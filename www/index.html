@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+<ion-header-bar class="bar-positive">
+  <div class="buttons">
+  <button class="button button-icon icon ion-ios-minus-outline" ng-click="showDelete = !showDelete"></button>
+    <h1 class="title">Ionic Fetching Data from API</h1>
+  </div>
+</ion-header-bar>
+
+<ion-content ng-controller="AppCtrl">
+  <button class="button button-block" ng-click="consulta()"> 
+    Consulta 
+  </button>
+
+  <label class="item item-input">
+   <input type="text" placeholder="Código" ng-model="prod.codigo">
+   </label>
+
+   <label class="item item-input">
+   <input type="text" placeholder="Nome" ng-model="prod.nome">
+   </label>
+
+   <label class="item item-input">
+   <input type="number" placeholder="Quantidade" ng-model="prod.qtde">
+   </label>
+
+   <label class="item item-input">
+   <input type="number" placeholder="Valor" ng-model="prod.valor">
+   </label>
+
+  <button class="button button-block" ng-click="insere()"> Insere </button>
+  <ion-list show-delete="showDelete">
+      <ion-item ng-repeat="prod in produtos" class="item-text-wrap">
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(prod)">
+          </ion-delete-button>
+           Código: {{ prod.codigo }}<br>
+         Nome: {{ prod.nome }}<br>
+         Quantidade: {{ prod.qtde }}<br>
+         Valor: {{ prod.valor }}<br>
+
+       <ion-option-button class="button-assertive" ng-click="openModal(prod)">
+          Alterar
+        </ion-option-button>
+
+         </ion-item>
+  </ion-list>
+</ion-content>  
+    
+    <script id="my-modal.html" type="text/ng-template">
+ <ion-modal-view>
+   <ion-header-bar>
+      <button 
+      class="button button-icon ion-ios-close-empty" 
+      ng-click="closeModal()">
+    </button>
+    <div class="buttons">
+      <h1 class="title">Atualiza Produto</h1>
+    </div>
+   </ion-header-bar>
+   <ion-content>
+     
+      <label class="item item-input">
+   <input type="text" ng-model="prod.codigo">
+   </label>
+
+   <label class="item item-input">
+   <input type="text" placeholder="Nome" ng-model="prod.nome">
+   </label>
+
+   <label class="item item-input">
+   <input type="number" placeholder="Quantidade" ng-model="prod.qtde">
+   </label>
+
+   <label class="item item-input">
+   <input type="number" placeholder="Valor" ng-model="prod.valor">
+   </label>
+
+  <button class="button button-block" ng-click="atualiza()"> 
+    Atualiza 
+  </button>
+
+   </ion-content>
+ </ion-modal-view>
+</script>
+
+</body>
+</html>
