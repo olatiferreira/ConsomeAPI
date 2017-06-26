@@ -55,8 +55,11 @@ pool.connect(function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query('insert into produtos (codigo, nome, qtde, valor) values (' + req.body.codigo + 
-  	', \'' + req.body.nome + '\', ' + req.body.qtde + ',' + req.body.valor + ')', function(err, result) {
+  client.query('insert into produtos (codigo, nome, telefone, cep, valor) values (' + req.body.codigo + ', \'' 
+    + req.body.nome + '\', ' 
+    + req.body.tel1 + ',' 
+    + req.body.cep + ',' 
+    + req.body.valor + ')', function(err, result) {
     //call `done()` to release the client back to the pool 
     done();
  
@@ -102,10 +105,11 @@ pool.connect(function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query('update produtos set nome = \'' + 
-		req.body.nome + '\', qtde = ' + req.body.qtde + 
-		', valor = ' + req.body.valor + ' where codigo = '+
-		req.body.codigo , function(err, result) {
+  client.query('update produtos set nome = \'' + req.body.nome 
+    + '\', telefone = ' + req.body.tel1 
+    + ', cep = ' + req.body.cep 
+    + ', valor = ' + req.body.valor
+    + ' where codigo = '+ req.body.codigo , function(err, result) {
     //call `done()` to release the client back to the pool 
     done();
  

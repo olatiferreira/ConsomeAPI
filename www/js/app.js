@@ -24,7 +24,7 @@ angular.module('starter', ['ionic'])
 })
 
 
-.controller('AppCtrl', function($scope, HttpService, $ionicModal) {
+.controller('AppCtrl', function($scope, HttpService, $ionicModal, $http) {
  
 
  $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -42,7 +42,19 @@ angular.module('starter', ['ionic'])
        
     });
  }
-      
+     
+// SignIn
+$scope.signIn = function(){    
+    window.location = "cadastro.html";
+ } 
+
+  $scope.busca = function(cep){
+            $http.get('http://api.postmon.com.br/cep/'+cep).success(function(local){
+                $scope.local_encontrado = local;
+                console.log(local);
+            });
+        };
+        
 
 $scope.insere = function(){
     HttpService.insereProduto($scope.prod)
@@ -59,7 +71,7 @@ $scope.deleteItem = function(item){
         HttpService.removeProduto(item)
         .then(function (response){
                   alert("Remoção com sucesso");
-                });
+                });        
   }
 }
 
