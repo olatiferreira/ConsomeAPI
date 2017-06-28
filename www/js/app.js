@@ -38,7 +38,7 @@ angular.module('starter', ['ionic'])
  $scope.consulta = function(){
     HttpService.getProdutos()
    .then(function(response) {
-       $scope.produtos = response;
+    $scope.produtos = response;
        
     });
  }
@@ -60,33 +60,50 @@ $scope.insere = function(){
     HttpService.insereProduto($scope.prod)
    .then(function(response) {
        $scope.produtos = response;
-       alert("Inserção com sucesso");
+       swal(
+  'Produto Inserido!',
+  'Verifique na consulta...',
+  'success'
+)
        
     });
  }
 
 $scope.deleteItem = function(item){
-  var resposta = confirm("Confirma a exclusão deste elemento?");
-  if (resposta == true){
-        HttpService.removeProduto(item)
+  swal({
+    title: "",
+    text: "Confirmar a exclusão deste elemento?",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Sim",
+    closeOnConfirm: false
+  },
+  function(){
+    HttpService.removeProduto(item)
         .then(function (response){
-                  alert("Remoção com sucesso");
-                });        
-  }
+                  swal("", "Remoção com sucesso!", "success");
+                });
+  });
 }
 
 $scope.atualiza = function(){
     HttpService.atualizaProduto($scope.prod)
    .then(function(response) {
        $scope.produtos = response;
-       alert("Atualização com sucesso");
+       swal(
+  'Produto Alterado!',
+  'Verifique na consulta...',
+  'success'
+)
        
     });
  }
 
 $scope.openModal = function(prod) {
-    $scope.modal.show();
-   // $scope.prod = prod; // permite que o conteúdo vá para Modal
+  // console.log(prod)  
+    $scope.modal.show(prod);
+   $scope.prod = prod; // permite que o conteúdo vá para Modal
 };
   
 $scope.closeModal = function() {

@@ -106,7 +106,7 @@ pool.connect(function(err, client, done) {
     return console.error('error fetching client from pool', err);
   }
   client.query('update produtos set nome = \'' + req.body.nome 
-    + '\', telefone = ' + req.body.tel1 
+    + '\', telefone = ' + req.body.telefone 
     + ', cep = ' + req.body.cep 
     + ', valor = ' + req.body.valor
     + ' where codigo = '+ req.body.codigo , function(err, result) {

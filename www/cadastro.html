@@ -18,6 +18,10 @@
 
   <!-- your app's js -->
   <script src="js/app.js"></script>
+
+  <!-- SweetAlert -->
+    <script src="js/sweetalert-master/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/sweetalert-master/dist/sweetalert.css">
 </head>
 <body ng-app="starter">
 
@@ -109,16 +113,16 @@
 </div>
 
 <ion-list show-delete="showDelete">
-  <ion-item ng-repeat="prod in produtos" class="item-text-wrap">
+  <ion-item ng-repeat="produto in produtos" class="item-text-wrap">
     <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(prod)">
     </ion-delete-button>
-    Código: {{ prod.codigo }}<br>
-    Nome: {{ prod.nome }}<br>
-    Telefone: {{ prod.tel1 }}<br>
-    CEP: {{ prod.cep }}<br>    
-    Valor: {{ prod.valor }}<br>
+    Código: {{ produto.codigo }}<br>
+    Nome: {{ produto.nome }}<br>
+    Telefone: {{ produto.telefone }}<br>
+    CEP: {{ produto.cep }}<br>    
+    Valor: {{ produto.valor }}<br>
 
-    <ion-option-button class="button-assertive" ng-click="openModal(prod)">
+    <ion-option-button class="button-assertive" ng-click="openModal(produto)">
       Alterar
     </ion-option-button>
 
@@ -148,7 +152,7 @@
  </label>
 
  <label class="item item-input">
-   <input type="text" placeholder="Telefone" ng-model="prod.tel1">
+   <input type="text" placeholder="Telefone" ng-model="prod.telefone">
  </label>
 
  <label class="item item-input">
